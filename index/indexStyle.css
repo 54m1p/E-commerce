@@ -1,0 +1,122 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+:root { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  :root { font-family: 'Inter var', sans-serif; }
+}
+.site-header{
+    border-bottom: 1px solid rgba(255, 10, 10, 0.138);
+}
+/* Header Line 1 */
+.header-line-1{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+}
+.header-line-1.child-1{
+    flex: 0.5;
+}
+.header-line-1.child-2{
+    flex: 3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+.header-line-1.child-2#search-box{
+    width: 50px;
+    height: 20px;
+}
+.header-line-1.child-3{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap:20px;
+}
+
+/* Header Line 2 */
+.header-line-2{
+    display: flex;
+    /* justify-content: space-between; */
+}
+.header-line-2.child-2{
+    flex: 3;
+    gap: 10px;
+}
+/* main-container */
+.main-container{
+    max-width: 1288px;
+    margin: 0 auto;
+    padding-top: 20px; 
+}
+/* banner carousel */
+.index-carousel{
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+ } 
+ .index-carousel-img{
+    max-width: 1296px;
+    max-height: 543.2px;
+    aspect-ratio: 2.38;
+    border-radius: 10px;
+     transition: 2s;
+ }   
+
+/* featured-categories */
+.featured-categories{
+    margin: 80px 0px;
+}
+.featured-cat-img{
+    width : 120px;
+    height: 120px;
+    margin: 0px 0px 12px;
+}
+.featured-category{
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    /* transition: 1s; */
+    /* scroll-snap-type: x mandatory; */
+}
+.featured-cat-h1{
+display: flex;
+margin-bottom: 20px;
+}
+.featured-cat-h1 h1{
+    flex: 0.94;
+}
+.slick-next img{
+    max-height: 24px;
+}
+.slick-arrow{
+    background-color: #ecf0ef;
+    color: #889397;
+    border: 2px solid;
+    border-radius: 15px;
+    margin-right: 5px;
+    height: 25px;
+}
+.slick-arrow:hover{
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+.each-category{
+/* padding: 32px 16px; */
+text-align: center;
+border: 1px solid #ecf0ef;
+border-radius: 10px;
+margin-right: 12px;
+min-width: 200.4px;
+min-height: 218.4px;
+
+}
+.each-category p{
+    text-align: center;
+}

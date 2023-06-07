@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Buys</title>
+    <link rel="stylesheet" href="indexStyle.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
+    <link rel="preconnect" href="https://your-font-file-host/">
+    <link rel="stylesheet" href="https://your-font-file-host/inter.css">
+</head>
+<body onload="featuredCatFetch(), fetchAllProducts()">
+    <header class="site-header">
+        <!-- icon, search, location, wishlist, profile cart -->
+        <div class="header-line-1">
+            <span class="header-line-1 child-1">
+                 <img src="../images/SNLogo.png" alt="" width="70" height="50">
+            </span>
+            <span class="header-line-1 child-2">
+                <span class="search-product">
+                    <input type="text" name="searchBOx" id="search-box" placeholder="Search for Products "><button><i class="fas fa-search"></i></button>
+                </span>
+                <span class="ship-location-span">
+                    <button><i class="fa fa-light fa-location-dot" style="color: #5d2e60;"></i> Location </button>
+                </span>
+            </span>
+            <span class="header-line-1 child-3">
+                <span class="header-child-3 wishlist-span">
+                    <i class="fa fa-regular fa-heart"></i>
+                </span>
+                <span class="header-child-3 profile-span">
+                    <i class="fa fa-light fa-user"></i>
+                </span>
+                <span class="header-child-3 cart-span">
+                    <i class="fa fa-light fa-cart-shopping"></i>
+                </span>
+            </span>
+        </div>
+        <!-- categories,  -->
+        <div class="header-line-2 child-1">
+            <span class="header-child categories-span">
+                <button type="button"><i class="fa fa-light fa-bars"></i> Categories</button>
+            </span> 
+            <span class="header-line-2 child-2">
+                <span>Home <i class="fa fa-thin fa-caret-down"></i></span>
+                <span>Shop <i class="fa fa-thin fa-caret-down"></i></span>
+                <span>Store <i class="fa fa-thin fa-caret-down"></i></span>
+                <span>Menu <i class="fa fa-thin fa-caret-down"></i></span>
+                <span>Pages <i class="fa fa-thin fa-caret-down"></i></span>
+                <span>Account <i class="fa fa-thin fa-caret-down"></i></span>
+                <span>Dashboard <i class="fa fa-thin fa-caret-down"></i></span>
+            </span>
+        </div>
+    </header>
+    <section class="main-container">
+        <div class="carousel-body">
+            <div class="index-carousel">
+                <!-- imgs_slides -->
+                <div class="carousel-slide">
+                    <!-- <input type="radio" name="carousel-radio" id="radio-1">
+                    <input type="radio" name="carousel-radio" id="radio-2">
+                    <input type="radio" name="carousel-radio" id="radio-3">
+                    -->
+                
+                <!-- <div class="carousel-wrapper" id="carousel-wrapper"> -->
+                    <!-- slide -->
+                        <img src="https://cdn.pixabay.com/photo/2019/07/24/14/17/shopping-4360296_1280.jpg" class="index-carousel-img img-1" alt="">
+                        <img src="https://cdn.pixabay.com/photo/2016/08/17/04/43/template-1599667_1280.png" class="index-carousel-img img-2" alt="">
+                        <img src="https://cdn.pixabay.com/photo/2021/03/19/13/40/online-6107598_1280.png" class="index-carousel-img img-3" alt="">
+                <!-- </div> -->
+            </div>
+        </div>
+        </div>
+        <div class="featured-categories">
+            <div class="featured-cat-h1">
+                <h1>Featured Categories</h1>
+                <span class="slick-prev slick-arrow" id="slick-prev" onclick="catCarouselLeft()"><img src="/icons/chevron-left.svg" class="svg-Carousel"></img></span>
+                <span class="slick-next slick-arrow" id="slick-next" onclick="activateCatCarousel()" ><img src="/icons/chevron-right.svg" class="svg-Carousel"></span></span>
+            </div>
+                <div class="featured-category">
+                    <!-- <img class="featured-cat-img" alt="">
+                    <div class="featured-cat-title"></div> -->
+                </div>
+        </div>
+        <div class="offer-section">
+            <div></div>
+        </div>
+        <div class="popular-area">
+            <div class="popular-section">
+                <h1>Popular Products</h1>
+                <div class="popular-products" id="popular-products"></div>
+            </div>
+        </div>
+    </section>
+    <script src="indexScript.js"></script>
+</body>
+</html>
