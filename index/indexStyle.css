@@ -6,8 +6,10 @@
 @supports (font-variation-settings: normal) {
   :root { font-family: 'Inter var', sans-serif; }
 }
+
 .site-header{
     border-bottom: 1px solid rgba(255, 10, 10, 0.138);
+    font-size: 14px;
 }
 /* Header Line 1 */
 .header-line-1{
@@ -19,7 +21,7 @@
     flex: 0.5;
 }
 .header-line-1.child-1 h2{
-    margin-right: 2px;
+    margin-left: 7px;
     color: #21313c;
 }
 .search-product input#search-box {
@@ -44,7 +46,7 @@ position: relative;
   right: 1px;
   top: 14px;
 }
-.search-product button:hover{
+.header-fa-icon:hover{
     transition: .4s;
     transform: scale(1.5);
     cursor: pointer;
@@ -80,20 +82,107 @@ position: relative;
 /* Header Line 2 */
 .header-line-2{
     display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: gray;
 }
 .header-line-2.child-1{
-    flex: 0.34;
+    flex: 0.295;
     padding-left: 20px;
 }
 .header-line-2.child-2{
-    flex: 3;
-    gap: 10px;
+    flex: 2;
+    gap: 20px;
+}
+.header-line-2.child-2 span:hover{
+    cursor: pointer;
+    color: #0aad0a;
 }
 .header-line-2 button {
     padding: 14px 11px;
     font-size: 16px;
     border-radius: 9px;
 }
+/* Header Categories */
+.catPop{
+    position: relative;
+}
+.catPop:hover #categories-list{
+    visibility: visible;
+}
+
+#categories-list{
+    min-width: 130px;
+    visibility: hidden;
+    position: absolute;
+    list-style: none;
+    top: 47px;
+    border-radius: 10px;
+    background-color:  white;
+    padding: 10px;
+    box-shadow: 1px 1px 3px;
+}
+#categories-list li{
+    padding: 3px 5px 3px 10px;
+}
+#categories-list li:hover{
+    border-radius: 10px;
+    background-color: #dedada;
+    cursor: pointer;
+}
+.header-list{
+    padding: 10px 0;
+}
+.header-list.main-list{
+    position: relative;
+}
+.header-list.main-list:hover .main-ul{
+    visibility: visible;
+    display: block;
+}
+
+.header-ul{
+    padding: 10px;
+    background-color: #ffffff;
+    list-style: none;
+    margin-top: 10px;
+    border-radius: 10px;
+    min-width: 150px;
+    box-shadow: 1px 1px 3px;
+}
+.main-ul{
+    position: absolute;
+    display: none;
+    /* visibility: hidden; */
+}
+.header-ul li{
+    padding: 10px 20px;
+}
+ a{
+    text-decoration: none;
+    color: black;
+}
+.header-ul li:hover{
+    background-color: #dedada;
+    /* border: 1px solid grey; */
+    border-radius: 10px;
+}
+/* .my-acc-a:hover .my-acc-ul{
+    /* visibility: visible; */
+    /* display: block !important; */
+/* } */
+
+.header-list.my-acc-a{
+    position: relative;
+    padding-right: 0 20px;
+}
+.my-acc-ul{
+    display: none;
+    position: absolute;
+    top: 97px;
+    left: 160px;
+}
+
 /* main-container */
 .main-container, .site-header{
     max-width: 1288px;
@@ -212,7 +301,7 @@ min-height: 218.4px;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.each-popular-product {
+.each-product {
     margin: 10px 0px;
     width: 18%;
     /* height: 373px; */
@@ -220,14 +309,14 @@ min-height: 218.4px;
     border-radius: 10px;
 }
 
-.each-popular-product:hover{
+.each-product:hover{
     border-color:#0aad0a ;
     /* box-shadow: 1px 1px 8px 0px; */
     /* translate: 5px 5px; */
     transition: .4s;
     /* transform:translateX(3px); */
     cursor: pointer;
-    transform: scale(1.09);
+    transform: scale(1.03);
 }
 .prod-text-div p {
     font-size: 12.25px;
@@ -263,6 +352,10 @@ min-height: 218.4px;
     padding: 4px 8px;
     border: #0aad0a;
     border-radius: 3px;
+}
+.site-button:hover{
+background-color: #097909;
+cursor: pointer;
 }
 .rating-div{
 font-size: 13px;

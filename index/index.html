@@ -10,54 +10,101 @@
     <link rel="preconnect" href="https://your-font-file-host/">
     <link rel="stylesheet" href="https://your-font-file-host/inter.css">
 </head>
-<body onload="featuredCatFetch(), fetchAllProducts(), showCarouselFn(1)">
+<body onload="addCategory(), fetchAllProducts(), showCarouselFn(1)">
     <header class="site-header">
         <!-- icon, search, location, wishlist, profile cart -->
         <div class="header-line-1">
             <span class="header-line-1 child-1">
-                 <img src="../images/SNLogo.png" alt="" width="70" height="50">
+                 <img src="../images/SNLogo.png" alt="" width="70" height="50" id="site-logo">
                  <h2>Nepal Buys</h2>
             </span>
             <span class="header-line-1 child-2">
                 <span class="search-product">
                     <div>
-                        <input type="text" name="searchBOx" id="search-box" placeholder="Search for Products ">
-                        <button><i class="fas fa-search" styl="color: #5d2e60"></i></button>
+                        <input type="text" name="searchBox" id="search-box" placeholder="Search for Products ">
+                        <button class="header-fa-icon"><i class="fas fa-search fa-lg" style="color: #5d2e60"></i></button>
                     </div>
                 </span>
                 <span class="ship-location-span">
-                    <button><i class="fa fa-light fa-location-dot" style="color: gray;"></i> Location</button>
+                    <button onclick="getLocation()"><i class="fa fa-light fa-location-dot fa-lg" style="color: gray;"></i> Location</button>
                 </span>
             </span>
             <span class="header-line-1 child-3">
-                <span class="header-child-3 wishlist-span">
-                    <i class="fa fa-regular fa-heart"></i>
+                <span class="header-child-3 header-fa-icon wishlist-span">
+                    <i class="fa fa-regular fa-heart fa-lg"></i>
                 </span>
-                <span class="header-child-3 profile-span">
-                    <i class="fa fa-light fa-user"></i>
+                <span class="header-child-3 header-fa-icon profile-span">
+                    <i class="fa fa-light fa-user fa-lg"></i>
                 </span>
-                <span class="header-child-3 cart-span">
-                    <i class="fa fa-light fa-cart-shopping"></i>
+                <span class="header-child-3 header-fa-icon cart-span">
+                    <i class="fa fa-light fa-cart-shopping fa-lg"></i>
                 </span>
             </span>
         </div>
-        <!-- categories,  -->
+        <!-- categories,   -->
         <div class="header-line-2 ">
-            <span class="header-line-2 child-1 categories-span">
-                <button type="button" class="site-button categories-btn"><i class="fa fa-light fa-bars" style="color:ffffff"></i> Categories</button>
-            </span> 
+            <div class="header-line-2 child-1 categories-div" id="categories-div">
+                <div class="catPop">
+                    <button type="button" class="site-button categories-btn" id="categories-btn"><i class="fa fa-light fa-bars" style="color:ffffff"></i> Categories</button>
+                    <ul class="categories-list" id="categories-list">
+                        <!-- <li class="each-category"></li> -->
+                    </ul>
+                </div>
+            </div> 
             <span class="header-line-2 child-2">
-                <span>Home <i class="fa fa-thin fa-caret-down"></i></span>
-                <span>Shop <i class="fa fa-thin fa-caret-down"></i></span>
-                <span>Store <i class="fa fa-thin fa-caret-down"></i></span>
-                <span>Menu <i class="fa fa-thin fa-caret-down"></i></span>
-                <span>Pages <i class="fa fa-thin fa-caret-down"></i></span>
-                <span>Account <i class="fa fa-thin fa-caret-down"></i></span>
-                <span>Dashboard <i class="fa fa-thin fa-caret-down"></i></span>
+                <span class="header-list main-list header-home">Home
+                </span>
+                <span class="header-list main-list header-shop">Shop <i class="fa fa-thin fa-angle-down"></i>
+                    <ul class="header-ul main-ul shop-ul">
+                        <a href="#"><li> Shop 1</li></a>
+                        <a href="#"><li> Shop 2</li></a>
+                        <a href="#"><li> Shop 3</li></a>
+                        <a href="#"><li> Shop 4</li></a>
+
+                    </ul></span>
+                <span class="header-list main-list header-store">Store <i class="fa fa-thin fa-angle-down"></i>
+                    <ul class="header-ul main-ul store-ul">
+                        <a href="#"><li> Store 1</li></a>
+                        <a href="#"><li> Store 2</li></a>
+                        <a href="#"><li> Store 3</li></a>
+                        <a href="#"><li> Store 4</li></a>
+                    </ul></span>
+                <span class="header-list main-list header-menu">Menu <i class="fa fa-thin fa-angle-down"></i>
+                    <ul class="header-ul main-ul menu-ul">
+                        <a href="#"><li> Menu 1</li></a>
+                        <a href="#"><li> Menu 2</li></a>
+                        <a href="#"><li> Menu 3</li></a>
+                        <a href="#"><li> Menu 4</li></a>
+                    </ul></span>
+                <span class="header-list main-list header-pages">Pages <i class="fa fa-thin fa-angle-down"></i>
+                    <ul class="header-ul main-ul page-ul">
+                        <a href="#"><li>About</li></a>
+                        <a href="#"><li> Contact</li></a>
+                        <a href="#"><li> Page 3</li></a>
+                        <a href="#"><li> Page 4</li></a>
+                    </ul></span>
+                <span class="header-list main-list header-account">Account <i class="fa fa-thin fa-angle-down"></i>
+                    <ul class="header-ul main-ul account-ul">
+                        <a href="#"><li>Login</li></a>
+                        <a href="#"><li> Sign-up</li></a>
+                        <a href="#"><li> Forgot Password</li></a>
+                        <a href="#" class="header-list my-acc-a" id="my-acc"><li> My Account <i class="fa fa-thin fa-angle-right"></i></li></a>
+                            <ul class="header-ul my-acc-ul" id="my-acc-ul" >
+                                <a href="#"><li>Orders</li></a>
+                                <a href="#"><li>Settings</li></a>
+                                <a href="#"><li>Address</li></a>
+                                <a href="#"><li>Payment Method</li></a>
+                                <a href="#"><li>Notification</li></a>
+                            </ul>
+                        
+                    </ul>
+                </i></span>
+                <span class="header-list header-dashboard">Dashboard
+                </span>
             </span>
         </div>
     </header>
-    <section class="main-container">
+    <main class="main-container">
         <div class="carousel-body">
             <div class="index-carousel">
                 <!-- imgs_slides -->

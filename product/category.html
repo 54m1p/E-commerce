@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://your-font-file-host/inter.css">
     
 </head>
-<body onload> 
+<body onload=""> 
     <header class="site-header">
         <!-- icon, search, location, wishlist, profile cart -->
         <div class="header-line-1">
@@ -98,7 +98,6 @@
                                 <a href="#"><li>Payment Method</li></a>
                                 <a href="#"><li>Notification</li></a>
                             </ul>
-                        
                     </ul>
                 </i></span>
                 <span class="header-list header-dashboard">Dashboard
@@ -107,48 +106,19 @@
         </div>
     </header>
     <main class="main-container">
-        
-        <section id="product-card">
-            <!-- for image and product detail side by side -->
-            <div class="img-section"> 
-                <!-- for image -->
-                <div class="main-img-div"></div>
-                <div id="small-images"></div>
+        <aside class="sidebar">
+            <h3>Categories</h3> 
+            <ul class="aside-ul"></ul>
+        </aside>
+        <section class="prods-by-category">
+            <div class="category-title">
             </div>
-            <div class="product-details"> 
-                <!-- for product detail -->
-                <a class="detail-child product-category"> </a>
-                <h1 class="detail-child product-title"></h1>
-                <div class="detail-child product-rating"></div>
-                <p class="detail-child product-price"></p>
-                <hr class="product-line">
-                <p class="detail-child product-info"></p>
-                <div class="qty-div">
-                    <span class="change-qty inc-dec-wish decrease-qty"><i class="fas fa-regular fa-minus fa-lg"></i></span>
-                    <span class="change-qty to-buy-quantity"><input type="number" name="qty-box" id="qty-box" min="1" value="1" disabled></span>
-                    <span class="change-qty inc-dec-wish increase-qty"><i class="fa-regular fa-plus fa-lg"></i></span>
-                </div>
-                <div class="add-to-cart-div">
-                    <button class="site-button add-to-cart-btn" id="add-to-cart-btn" onclick="addToCartFn()"><i class="fas fa-regular fa-cart-shopping"></i> Add to cart</button>
-                    <span class=" change-qty inc-dec-wish add-to-wishlist"><i class="fa fa-regular fa-heart fa-lg"></i></span>
-                </div>
-                <hr class="product-line">
-                <div class="detail-child brand-stock-ship">
-                    <span class="brand-stock-ship-child prod-brand"><strong>Brand: </strong></span><br>
-                    <span class="brand-stock-ship-child prod-stock"><strong>Stock: </strong></span><br>
-                    <span class="brand-stock-ship-child prod-ship"><strong>Shipping: </strong></span>
-                </div>
+            <div class="cat-meta-info">
+                <!-- to sort and view buttons -->
             </div>
-        </section> 
-        <section>
-            <!-- more prdouct details -->
-        </section> 
-        <section class="related-products">
-            <!-- relatedItems -->
-            <h1>Related Products</h1>
-            <div class="related-prod-section"></div>
         </section>
     </main>
+    <script src="categoryScript.js"></script>
     <script src="productScript.js"></script>
 </body>
 </html>

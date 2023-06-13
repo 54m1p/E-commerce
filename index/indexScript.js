@@ -1,3 +1,34 @@
+// when location button clicked
+let getLocation=()=>{
+    console.log('location button clicked');
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }else{
+        console.log('')
+    }
+}
+function showPosition(position){
+    console.log('Latitude--', position.coords.latitude,'<br>Longitude---',position.coords.longitude)
+}
+   
+   let accList = document.getElementById('my-acc');
+   let accUl = document.getElementById('my-acc-ul');
+   accList.addEventListener('mouseenter',function(){
+    console.log('mouse hover function in ')
+        accUl.style.display = 'block';
+   });
+   accList.addEventListener('mouseleave',function(){
+    console.log('mouse hover function out');
+    accUl.style.display='none';
+   });
+   accUl.addEventListener('mouseenter',function(){
+    accUl.style.display = 'block';
+   });
+   accUl.addEventListener('mouseleave',function(){
+    console.log('mouse hover function out');
+    accUl.style.display='none';
+   });
+
 var count = 1;
 // for index-banner carousel
 let showCarouselFn=(count)=>{
@@ -19,20 +50,35 @@ function activateTimer(){
 setInterval(() => {
        activateTimer();
 }, 3000)
-
+var fetchedCat;
 //categories carousel
 async function featuredCatFetch(){
     let response = await fetch('https://dummyjson.com/products/categories');
-    let categories = await response.json();
-    addCategory(categories)
+    fetchedCat = await response.json();
+    return fetchedCat;
 }
 let totalCatWidth, oneCatWidth;
 let featuredCat = document.querySelector('.featured-category');
 let featuredCatDiv, featuredCatImg, featuredCatTitleDiv,featuredCatTitle;
-let addCategory=(categories)=>{
+let catList = document.getElementById('categories-list');
+ async function addCategory(){
+        let categories = await featuredCatFetch();
+        let catLi;      
+        
         categories.forEach((category)=>{
-             featuredCatDiv = document.createElement('div');
+            // header cateogries
+            catLi = document.createElement('li');
+            catLi.append(document.createTextNode(category));
+            catLi.onclick = ()=>{
+                console.log('catli clicked---',category);
+                location.href = '../product/category.html?cat='+category;
+            }
+            catList.append(catLi);
+
+            //addcarousel categories
+             featuredCatDiv = document.createElement('a');
              featuredCatDiv.className = 'each-category';
+             featuredCatDiv.href = '../product/category.html?cat='+category;
              featuredCatImg =document.createElement('img');
                 featuredCatImg.src = "https://cdn.pixabay.com/photo/2017/01/08/08/00/bubbles-1962355_1280.png";
                 featuredCatImg.className = "featured-cat-img";
@@ -68,6 +114,16 @@ setInterval(() => {
 }, 5000)
 // category carousel end
 
+// //Header categories display
+// let catDiv = document.getElementById('categories-btn');
+// catDiv.addEventListener('mouseenter', function(){
+//     catList.style.display = 'block';
+//     })
+// catDiv.addEventListener('mouseleave', function(){
+//     catList.style.display = 'none';
+// })
+    
+    
 // popular products 
 // fetch products
 async function fetchAllProducts(){
@@ -82,7 +138,7 @@ let popularProductsLoad = (products)=>{
     let sortedProducts = sortProductsByRating(products).slice(0,10);   
     sortedProducts.forEach((product)=>{
         popularDiv = document.createElement('div');
-        popularDiv.className = 'each-popular-product';
+        popularDiv.className = 'each-product';
         popularDiv.onclick = function(){
             openProduct(product.id);
         }
@@ -128,6 +184,8 @@ let popularProductsLoad = (products)=>{
         priceAddDiv.append(buttonSpan);
         popularText.append(priceAddDiv)
         popularDiv.append(popularText);
+
+
         //append the item div to html
         popularProducts.append(popularDiv);
     })
@@ -166,3 +224,15 @@ let ratingStarHalf = ()=>{
 }
 
 // product card opened
+async function fetchProduct(prodId){
+    
+    let response = await fetch('https://dummyjson.com/products/'+prodId)
+    let product = await response.json(); 
+    openProduct(product);  
+}
+
+ function openProduct(id){
+    location.href = "../product/product.html?key="+id;
+    // fetchProduct(id)
+}
+
