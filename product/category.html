@@ -21,9 +21,9 @@
                  <h2>Nepal Buys</h2>
             </a>
             <span class="header-line-1 child-2">
-                <span class="search-product">
+                <span class="search-div search-product">
                     <div>
-                        <input type="text" name="searchBox" id="search-box" placeholder="Search for Products ">
+                        <input type="text" name="searchBox" id="main-search-box" class="search-box" placeholder="Search for Products ">
                         <button class="header-fa-icon"><i class="fas fa-search fa-lg" style="color: #5d2e60"></i></button>
                     </div>
                 </span>
@@ -39,7 +39,7 @@
                     <i class="fa fa-light fa-user fa-lg"></i>
                 </span>
                 <span class="header-child-3 header-fa-icon cart-span">
-                    <i class="fa fa-light fa-cart-shopping fa-lg"></i>
+                    <a href="cart.html"><i class="fa fa-light fa-cart-shopping fa-lg"></i></a>
                 </span>
             </span>
         </div>
@@ -105,16 +105,75 @@
             </span>
         </div>
     </header>
-    <main class="main-container">
+    <main class="main-container category-container">
         <aside class="sidebar">
-            <h3>Categories</h3> 
-            <ul class="aside-ul"></ul>
+            <div class="cat-aside">
+                <h3>Categories</h3> 
+                <ul class="aside-ul"></ul>
+            </div>
+            <div class="search-div search-brand">
+                <span>
+                    <h3>Brand</h3>
+                    <input type="text" name="searchBox" class="search-box" id="brand-search-box" placeholder="Search for Brand ">
+                    <button class="header-fa-icon"><i class="fas fa-search fa-lg" style="color: #5d2e60"></i></button>
+                </span>
+                <div class="brand-list">
+                    <ul class="brand-ul" id="brand-ul"></ul>
+                </div>
+            </div>
+            <div class="price-slider">
+                <h4>Price</h4>
+                <div Class="min-max-price">
+                    <span><input type="number" id="min-price" placeholder="Min price" size="2"></span>
+                    <span><input type="number" id="max-price"name="" placeholder="Max price" size="2"></span>
+                </div>
+            </div>
+            <div class="sortby-rating">
+                <h4>Rating</h4>
+                <input type="checkbox" name="rating" class="rating" id="rating5">
+                <label for="rating5"><i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i></label><br>
+                <input type="checkbox" name="rating" class="rating" id="rating4">
+                <label for="rating4"><i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class=" fa-regular fa-star" style="color: rgb(255, 193, 7);"></i></label><br>
+                <input type="checkbox" name="rating" class="rating" id="rating3">
+                <label for="rating3"><i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class=" fa-regular fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class=" fa-regular fa-star" style="color: rgb(255, 193, 7);"></i></label><br>
+                <input type="checkbox" name="rating" class="rating" id="rating2">
+                <label for="rating2"><i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i> 
+                    <i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class=" fa-regular fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class=" fa-regular fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class=" fa-regular fa-star" style="color: rgb(255, 193, 7);"></i></label><br>
+                <input type="checkbox" name="rating" class="rating" id="rating1">
+                <label for="rating1"><i class="fa-solid fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class=" fa-regular fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class=" fa-regular fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class=" fa-regular fa-star" style="color: rgb(255, 193, 7);"></i>
+                    <i class=" fa-regular fa-star" style="color: rgb(255, 193, 7);"></i></label><br>
+            </div>
+            <button id="filter-click">Filter</button>
         </aside>
         <section class="prods-by-category">
-            <div class="category-title">
+            <div class="cat-card-title">
             </div>
-            <div class="cat-meta-info">
+            <div class="search-heading"></div>
+            <div class="cat-card-info">
                 <!-- to sort and view buttons -->
+                <span id="products-found"></span>
+                <!-- buttons for sort and view -->
+                <div class="cat-prod-div">
+
+                </div>
             </div>
         </section>
     </main>

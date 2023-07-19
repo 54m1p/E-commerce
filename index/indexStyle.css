@@ -10,7 +10,69 @@
 .site-header{
     border-bottom: 1px solid rgba(255, 10, 10, 0.138);
     font-size: 14px;
+    position: relative;
 }
+.header-modal{
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: 70%;
+    position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  /* padding-top: 100px; Location of the box */
+  left: 0;
+  top: 10;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: white; /* Fallback color */
+  border: #21313c;
+  box-shadow: 1px 1px 6px;
+}
+.header-modal.wish-list{
+    padding: 20px;
+}
+.modal-header{
+    display: flex;
+    padding-bottom: 20px;
+}
+.modal-header h1{
+    width: 60%;
+    text-align: right;
+    padding-top: 20px;
+}
+.modal-header span{
+    width: 40%;
+    text-align: right;
+}
+.wishlist-modal-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .wishlist-modal-close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /* each wishlist */
+  .each-wish-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+  }
+  .each-wish-div img{
+    max-width: 64px;
+    aspect-ratio:1; 
+ }
 /* Header Line 1 */
 .header-line-1{
     display: flex;
@@ -24,14 +86,16 @@
     margin-left: 7px;
     color: #21313c;
 }
-.search-product input#search-box {
+.search-product #main-search-box{
+    width: 528px;
+}
+.search-div input {
 border: 1px solid grey;
 border-radius: 10px;
 font-size: 14px;
 height: 41px;
-width: 528px;
 padding-left: 10px;
-position: relative;
+/* position: relative; */
 }
 .search-product div{
     position: relative;
@@ -332,8 +396,8 @@ min-height: 218.4px;
     padding: 10px;
 }
 .prod-img-div img{
-    width: 210px;
-    height: 210px;
+    width: 100%;
+    aspect-ratio: 1;
     margin: 0px 0px 12px;
     border-radius: 10px;
 }

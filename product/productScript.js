@@ -1,9 +1,14 @@
  window.onload = openProductCard();
- let prodImg, otherImgs, mainImgDiv,smallImgDiv
+ let prodImg, otherImgs, mainImgDiv,smallImgDiv;
  async function openProductCard (){
     let urlString = new URLSearchParams(window.location.search);
     let prodId = urlString.get('key');
     let response = await fetch('https://dummyjson.com/products/'+prodId);
+    const isalready = wishListArr.some(item=> item.prodid ==prodId);
+    if(isalready){
+        console.log('already in list');
+        document.getElementById('add-to-wishlist').innerHTML = '<i class="fa-solid fa-heart fa-lg"></i>';
+    }
     let fetchedProd = await response.json();
     // prodImg = document.getElementById('prod-img');
     // prodImg.src = fetchedProd.thumbnail;
@@ -24,7 +29,7 @@
         smallImgDiv.appendChild(smallImg);
     }
     let prodCat = document.querySelector('.product-category');
-    prodCat.href = 'category.html/'+fetchedProd.category;
+    prodCat.href = 'category.html?cat='+fetchedProd.category;
     let slicedTitle = fetchedProd.category.charAt(0).toUpperCase()+fetchedProd.category.slice(1)
     prodCat.innerHTML= slicedTitle.replace(/-/g,'');
 
@@ -139,7 +144,7 @@ async function fetchAllProducts(category){
     }
 let relatedProdDiv = document.querySelector('.related-prod-section');
 async function openRelatedItems  (category){
-    let relatedDiv,relatedImgDiv, relatedImg, relatedText, relatedCatP,relatedCat,relatedProdH2,relatedProd,relatedProduct;
+    let relatedDiv,relatedImgDiv, relatedImg, relatedText, relatedCatP,relatedCat,relatedProdH2,relatedProd,relatedProduct,addToCartBtn;
 
     let showRelatedProds = await productsByCategory(category);   
     showRelatedProds.forEach((product)=>{
@@ -193,17 +198,12 @@ async function openRelatedItems  (category){
 async function productsByCategory(category){
     let relatedArr =[]
     let allProds = await fetchAllProducts(category);
-    console.log(allProds.products,'---all products');
     allProds.products.forEach(product=>{
         relatedArr.push(product)
     })
-    console.log('related arr--',relatedArr)
    return relatedArr.sort(() => Math.random() - Math.random()).slice(0, 5);
 }
-// add to cart clicked
-function addToCartFn(){
-    console.log('add to cart pressed');
-}
+
 // product card opened
 async function fetchProduct(prodId){
     let response = await fetch('https://dummyjson.com/products/'+prodId)
@@ -214,3 +214,124 @@ async function fetchProduct(prodId){
  function openProduct(id){
     location.href = "../product/product.html?key="+id;
 }
+
+// for fetching all products
+async function allproductsFetch(){
+    let response = await fetch('https://dummyjson.com/products?skip=0&limit=100');
+    return response.json();
+}
+
+//header wishlist button clicked
+let wishlistBtn = document.querySelector('.wishlist-span');
+wishlistBtn.addEventListener('click',()=> openWishList());
+async function openWishList(){
+    document.getElementById('wish-list-modal').style.display = 'block'
+    let wishListContents = document.getElementById('wish-list-contents');
+    let allProd = await allproductsFetch();
+    let wishListArr = localStorage.getItem('wish-list')!=null? JSON.parse(localStorage.getItem('wish-list')):[];
+    let wishListProd=[];
+    wishListArr.forEach((item)=>{
+        for(let i= 0; i<allProd.products.length;i++){
+            if(allProd.products[i].id == item.prodid) wishListProd.push(allProd.products[i]);
+        }
+    })
+    showWishProd(wishListProd);
+}
+
+// show wishlist products as html
+async function showWishProd(products){
+    // console.log('into the show wish prod', products)
+    let wishListDiv,eachWish,eachWishImg,eachWishTitle,eachWishPrice,addToCartBtn,removeWishBtn;
+    let wishListSection = document.getElementById('wish-list-contents');
+    wishListSection.innerHTML = "" ;
+    products.forEach((product)=>{
+        console.log(product.thumbnail,'--product thumbnail')
+        eachWish = document.createElement('div');
+            eachWish.className='each-wish-div';
+        eachWishImg = document.createElement('img');
+            eachWishImg.src= product.thumbnail;
+        eachWishTitle = document.createElement('h3');
+            eachWishTitle.appendChild(document.createTextNode(product.title));
+            let discPrice = product.price-(product.discountPercentage/100)*product.price;
+            eachWishPrice=document.createTextNode('$'+discPrice.toFixed(2));
+        addToCartBtn = document.createElement('button');
+            addToCartBtn.className='site-button add-to-cart-btn';
+            addToCartBtn.onclick = function(){
+                alert('Product added to cart');
+                addToCartFn();
+            }
+            addToCartBtn.innerHTML ='Add To Cart' ;
+        removeWishBtn = document.createElement('button');
+            removeWishBtn.innerHTML = '<i class="fa fa-duotone fa-trash-can"></i>';
+            removeWishBtn.onclick = function(){
+                console.log('rmeove button pressed in wishlist')
+                wishListArr = wishListArr.filter(item => item.prodid !=product.id);
+                localStorage.setItem('wish-list',JSON.stringify(wishListArr));
+                this.parentNode.style.display = 'none';
+            }
+        
+        eachWish.appendChild(eachWishImg);
+        eachWish.appendChild(eachWishTitle);
+        eachWish.appendChild(eachWishPrice);
+        eachWish.appendChild(addToCartBtn);
+        eachWish.appendChild(removeWishBtn);
+
+        wishListSection.appendChild(eachWish);
+    })
+    console.log(products,'---products in wishlist');
+}
+let wishlistClose =document.querySelector('.wishlist-modal-close');
+wishlistClose.addEventListener('click',function(){
+    document.getElementById('wish-list-modal').style.display = 'none'
+    location.reload();
+});
+
+//when user clicks product wishlist button
+var wishListArr = localStorage.getItem('wish-list')!= null ? JSON.parse(localStorage.getItem('wish-list')) : [];
+let addToWishlist = document.getElementById('add-to-wishlist');
+addToWishlist.addEventListener('click', ()=> addtoWish());
+ function addtoWish(){
+    let urlString = new URLSearchParams(window.location.search);
+    let prodId = urlString.get('key');
+    const isalready = wishListArr.some(item=> item.prodid ==prodId);
+    if(!isalready){
+        wishListArr.push({
+            prodid: prodId
+        });
+        document.getElementById('add-to-wishlist').innerHTML = '<i class="fa-solid fa-heart fa-lg"></i>';
+    }else{
+        wishListArr = wishListArr.filter(item => item.prodid !=prodId);
+        document.getElementById('add-to-wishlist').innerHTML = '<i class="fa-regular fa-heart fa-lg"></i>';
+    }
+    console.log('wishListArr---',wishListArr);
+    localStorage.setItem('wish-list',JSON.stringify(wishListArr));
+    
+    }
+
+// when add to cart clicked
+var cartArr = localStorage.getItem('cart-list')!= null? JSON.parse(localStorage.getItem('cart-list')):[];
+    let addCartBtn = document.querySelector('.add-to-cart-btn');
+    addCartBtn.addEventListener('click', ()=> addToCartFn());
+    function addToCartFn(){
+        console.log('add to cart pressed');
+        let itemQty = document.getElementById('qty-box').value;
+        let urlString = new URLSearchParams(window.location.search);
+        let prodId = urlString.get('key');
+        const isalready = cartArr.some(item=> item.prodid == prodId);
+        if(!isalready){
+            alert('Item added to cart')
+            cartArr.push({
+                prodid: prodId,
+                prodqty: itemQty
+            });
+        }else{
+            alert('Item already in cart')
+        }
+        localStorage.setItem('cart-list',JSON.stringify(cartArr));
+    }
+// header cart opened
+    let headerCartBtn = document.querySelector('.cart-span');
+    headerCartBtn.addEventListener('click', ()=> openCart());
+    function openCart(){
+        }
+    

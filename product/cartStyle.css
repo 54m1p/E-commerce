@@ -1,0 +1,44 @@
+img.cart-prod-img {
+    max-width: 60px;
+    aspect-ratio: 1;
+}
+table{
+    width: 80%;
+    margin: 0 auto;
+}
+table:last-child{
+    border-bottom: solid grey;
+}
+.title-td{
+    display: flex;
+    align-items: center;
+}
+.tbl-col{
+    text-align: center;
+}
+.title-td img{
+margin: 20px;
+}
+th, td{
+    text-align: center;
+}
+.tbl-col.prod-col{
+    width: 30%;
+}
+.tbl-col.qty-col{
+    width: 30%;
+}
+.tbl-col.price-col{
+    width: 20%;
+}
+.del-td{
+    text-align: left;
+}
+#total-div{
+   width: 80%;
+   margin: 0 auto;
+   text-align: right;
+}
+#total-div div{
+    margin: 20px;
+}

@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
     <link rel="preconnect" href="https://your-font-file-host/">
     <link rel="stylesheet" href="https://your-font-file-host/inter.css">
+    <link rel="stylesheet" href="cartStyle.css">
     
 </head>
-<body onload> 
+<body onload = 'cartLoadFn()'> 
     <header class="site-header">
         <!-- icon, search, location, wishlist, profile cart -->
         <div class="header-line-1">
@@ -39,7 +40,7 @@
                     <i class="fa fa-light fa-user fa-lg"></i>
                 </span>
                 <span class="header-child-3 header-fa-icon cart-span">
-                    <a href="cart.html"><i class="fa fa-light fa-cart-shopping fa-lg"></i></a>
+                    <a href="#"><i class="fa fa-light fa-cart-shopping fa-lg"></i></a>
                 </span>
             </span>
         </div>
@@ -105,7 +106,6 @@
                                 <a href="#"><li>Payment Method</li></a>
                                 <a href="#"><li>Notification</li></a>
                             </ul>
-                        
                     </ul>
                 </i></span>
                 <span class="header-list header-dashboard">Dashboard
@@ -113,49 +113,20 @@
             </span>
         </div>
     </header>
-    <main class="main-container">
-        
-        <section id="product-card">
-            <!-- for image and product detail side by side -->
-            <div class="img-section"> 
-                <!-- for image -->
-                <div class="main-img-div"></div>
-                <div id="small-images"></div>
-            </div>
-            <div class="product-details"> 
-                <!-- for product detail -->
-                <a class="detail-child product-category"> </a>
-                <h1 class="detail-child product-title"></h1>
-                <div class="detail-child product-rating"></div>
-                <p class="detail-child product-price"></p>
-                <hr class="product-line">
-                <p class="detail-child product-info"></p>
-                <div class="qty-div">
-                    <span class="change-qty inc-dec-wish decrease-qty"><i class="fas fa-regular fa-minus fa-lg"></i></span>
-                    <span class="change-qty to-buy-quantity"><input type="number" name="qty-box" id="qty-box" min="1" value="1" disabled></span>
-                    <span class="change-qty inc-dec-wish increase-qty"><i class="fa-regular fa-plus fa-lg"></i></span>
-                </div>
-                <div class="add-to-cart-div">
-                    <button class="site-button add-to-cart-btn" id="add-to-cart-btn"><i class="fas fa-regular fa-cart-shopping"></i> Add to cart</button>
-                    <span class=" change-qty inc-dec-wish add-to-wishlist" id="add-to-wishlist"><i class=" fa-regular fa-heart fa-lg"></i></span>
-                </div>
-                <hr class="product-line">
-                <div class="detail-child brand-stock-ship">
-                    <span class="brand-stock-ship-child prod-brand"><strong>Brand: </strong></span><br>
-                    <span class="brand-stock-ship-child prod-stock"><strong>Stock: </strong></span><br>
-                    <span class="brand-stock-ship-child prod-ship"><strong>Shipping: </strong></span>
-                </div>
-            </div>
-        </section> 
-        <section>
-            <!-- more prdouct details -->
-        </section> 
-        <section class="related-products">
-            <!-- relatedItems -->
-            <h1>Related Products</h1>
-            <div class="related-prod-section"></div>
-        </section>
+    <main class="main-container cart-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="tbl-col prod-col">Product</th>
+                    <th class="tbl-col qty-col">Quantity</th>
+                    <th class="tbl-col price-col">Price</th>
+                </tr>
+            </thead>
+            <tbody id="cart-tbl-body">
+            </tbody>
+        </table>
+        <div id="total-div"></div>
     </main>
-    <script src="productScript.js"></script>
-</body>
+    <script src="cartScript.js"></script>
+    </body>
 </html>
